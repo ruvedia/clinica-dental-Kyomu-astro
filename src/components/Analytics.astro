@@ -34,7 +34,8 @@ const analyticsId = config.analyticsId;
   };
 
   // Evaluar inmediatamente si ya existía el consentimiento previo
-  if (localStorage.getItem("gdpr_consent") === "true") {
+  const consent = localStorage.getItem("gdpr_consent");
+  if (consent === "all" || consent === "true") {
     window.loadAnalytics();
   }
 </script>

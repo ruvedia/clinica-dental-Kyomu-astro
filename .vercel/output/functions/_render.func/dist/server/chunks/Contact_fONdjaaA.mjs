@@ -2,7 +2,7 @@ import { c as createComponent } from './astro-component_C2-YdCeC.mjs';
 import 'piccolore';
 import { B as maybeRenderHead, a4 as addAttribute, T as renderTemplate } from './sequence_BzuxnACm.mjs';
 import 'clsx';
-import { c as config } from './MainLayout_BzIsdTAO.mjs';
+import { c as config } from './MainLayout_DUjnVnl7.mjs';
 
 const $$Contact = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${maybeRenderHead()}<section id="contacto" class="py-12 bg-white relative"> <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24"> <!-- Map Side --> <div class="flex flex-col"> <div class="mb-8 overflow-hidden rounded-[3rem] border border-gray-100 shadow-xl aspect-video relative group bg-slate-100 animate-pulse"> <!-- Placeholder background while loading --> <div class="absolute inset-0 flex items-center justify-center text-gray-400 text-sm font-medium z-0">
@@ -13,9 +13,7 @@ Abrir GPS (Google Maps)
 He leído y acepto la <a href="/politica-de-privacidad" class="text-teal-600 hover:underline transition-colors" target="_blank">Política de Privacidad</a>.
 </label> </div> </div> <button type="submit" class="w-full py-4 px-6 border border-transparent text-lg font-bold rounded-xl text-white bg-slate-900 hover:bg-teal-600 shadow-lg transition-all cursor-pointer">
 Enviar Mensaje
-</button> <p class="text-xs text-gray-400 text-center mt-6">
-Al enviar este formulario aceptas nuestra política de privacidad.
-</p> </form> </div> </div> </div> </section>`;
+</button> <!-- Cláusula informativa de primer nivel (RGPD) --> <div class="bg-slate-50 p-4 rounded-xl border border-gray-100 text-[10px] sm:text-[11px] text-gray-500 leading-relaxed mt-4"> <p class="m-0 mb-1 font-bold text-slate-800">Información básica sobre protección de datos (RGPD):</p> <ul class="list-none p-0 m-0 space-y-0.5"> <li><strong>Responsable:</strong> Clínica Dental Kyomu</li> <li><strong>Finalidad:</strong> Gestionar su cita o responder a la consulta enviada.</li> <li><strong>Legitimación:</strong> Su consentimiento explícito al marcar la casilla.</li> <li><strong>Derechos:</strong> Acceder, rectificar, limitar y suprimir sus datos escribiendo a nuestro email.</li> <li><strong>Más información:</strong> Consulte nuestra <a href="/politica-de-privacidad" target="_blank" class="text-teal-600 font-semibold underline hover:text-teal-700 transition-colors">Política de Privacidad</a>.</li> </ul> </div> </form> </div> </div> </div> </section>`;
 }, "/Users/francervantesruiz/Documents/0_webs/1. Proyectos Ruvedia/clinica dental kyomu/astro/src/components/Contact.astro", void 0);
 
 export { $$Contact as $ };

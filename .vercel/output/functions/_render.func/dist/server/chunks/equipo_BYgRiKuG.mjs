@@ -1,9 +1,9 @@
 import { c as createComponent } from './astro-component_C2-YdCeC.mjs';
 import 'piccolore';
 import { T as renderTemplate, B as maybeRenderHead } from './sequence_BzuxnACm.mjs';
-import { r as renderComponent } from './entrypoint_DXik18PA.mjs';
-import { $ as $$MainLayout, r as renderScript, c as config } from './MainLayout_BzIsdTAO.mjs';
-import { $ as $$Contact } from './Contact_C9QgvU11.mjs';
+import { r as renderComponent } from './entrypoint_-og_vJv4.mjs';
+import { $ as $$MainLayout, r as renderScript, c as config } from './MainLayout_DUjnVnl7.mjs';
+import { $ as $$Contact } from './Contact_fONdjaaA.mjs';
 
 const $$Equipo = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${renderComponent($$result, "MainLayout", $$MainLayout, { "title": `Nuestro Equipo | ${config.clinicName}`, "description": config.description }, { "default": ($$result2) => renderTemplate`  ${maybeRenderHead()}<div class="bg-slate-50 border-b border-gray-100 py-16 sm:py-24"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"> <span class="text-teal-600 font-semibold tracking-wider uppercase text-sm mb-4 block">Especialistas</span> <h1 class="text-4xl md:text-6xl font-bold text-slate-900">Nuestro Equipo</h1> </div> </div>  <section class="py-24 bg-white relative overflow-hidden"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="grid grid-cols-1 md:grid-cols-3 gap-12"> <!-- Card 1 --> <div class="js-team-card group relative bg-slate-50 rounded-[2.5rem] overflow-hidden border border-gray-100/50 shadow-sm hover:shadow-xl hover:bg-white transition-all duration-500 hover:-translate-y-1"> <div class="aspect-[4/5] overflow-hidden relative"> <img src="/img/2024-05-09-5.jpg" alt="Doctor en Kyomu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"> <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-60"></div> </div> <div class="p-8"> <h3 class="text-2xl font-bold text-slate-900 mb-2 font-heading">Dr. Especialista</h3> <p class="text-teal-600 font-semibold text-sm mb-4">Expertos en salud dental</p> <p class="text-gray-500 text-sm leading-relaxed">
