@@ -1,0 +1,15 @@
+---
+import { config } from '../data/config';
+import TestimonialsGrid from './testimonials/TestimonialsGrid.astro';
+import TestimonialsSlider from './testimonials/TestimonialsSlider.astro';
+import TestimonialsBento from './testimonials/TestimonialsBento.astro';
+
+const { testimonials, testimonialsStyle: style = 'grid' } = config;
+---
+
+{style === 'grid' && testimonials && <TestimonialsGrid testimonials={testimonials} />}
+{style === 'slider' && testimonials && <TestimonialsSlider testimonials={testimonials} />}
+{style === 'bento' && testimonials && <TestimonialsBento testimonials={testimonials} />}
+
+{/* Fallback */}
+{(!['grid', 'slider', 'bento'].includes(style) || !testimonials) && testimonials && <TestimonialsGrid testimonials={testimonials} />}
