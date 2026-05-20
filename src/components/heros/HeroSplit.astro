@@ -1,0 +1,64 @@
+---
+import { config } from '../../data/config';
+import { Picture } from 'astro:assets';
+---
+<section class="relative bg-white min-h-[100svh] !important w-full flex !important flex-col !important justify-start !important items-center !important p-0 !important m-0 !important pt-[180px] sm:pt-[200px] !important pb-10 !important box-border !important overflow-hidden z-[1]" style="-webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;">
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
+      
+      <!-- Image Column (First on Mobile) -->
+      <div class="relative lg:h-[600px] rounded-[2.5rem] overflow-hidden shadow-2xl animate-fade-up order-1 lg:order-2" style="animation-delay: 0.2s;">
+        <!-- Overlay sutil -->
+        <div class="absolute inset-0 z-10 rounded-[2.5rem] pointer-events-none" style="background-color: rgba(0,119,182,0.05) !important;"></div>
+        <Picture 
+          src="/img/fisioprotema/fachada_total.jpg" 
+          formats={['avif', 'webp']}
+          fallbackFormat="jpg"
+          alt="Clínica Fisioprotema Leganés" 
+          width={1360}
+          height={644}
+          class="w-full h-full object-cover"
+          style="image-rendering: -webkit-optimize-contrast; width: 100% !important; height: 100% !important;"
+        />
+        <!-- Decorative blob -->
+        <div class="absolute -bottom-6 -left-6 w-32 h-32 rounded-full blur-2xl -z-10 pointer-events-none" style="background-color: rgba(245,158,11,0.3) !important;"></div>
+      </div>
+
+      <!-- Text Content with CSS Animation (Second on Mobile) -->
+      <div class="max-w-2xl relative z-10 animate-fade-up order-2 lg:order-1">
+        <span class="animate-safari inline-block py-1.5 px-4 rounded-full font-semibold mb-6 border border-primary/20 tracking-wide uppercase bg-primary/10 text-primary" style="font-size: 14px !important; line-height: 20px !important;">
+          {config.hero.badge}
+        </span>
+        <h1 class="animate-safari font-bold tracking-tight mb-6 leading-[1.1] text-balance" style="color: #1a1a1a !important; font-size: clamp(28px, 5vw, 60px) !important; line-height: 1.1 !important;">
+          <Fragment set:html={config.hero.title} />
+        </h1>
+        <p class="animate-safari mb-8 leading-relaxed text-balance" style="color: #4B5563 !important; font-size: 20px !important; line-height: 32px !important;">
+          {config.hero.description}
+        </p>
+        
+        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
+          <button class="js-reserva-btn inline-flex items-center justify-center px-8 py-4 border border-transparent font-semibold rounded-full shadow-lg shadow-primary/30 w-full sm:w-auto transition-transform hover:scale-105 bg-primary text-white cursor-pointer" style="font-size: 16px !important;">
+            Reservar Cita
+          </button>
+          <a href="/contacto" class="inline-flex items-center justify-center px-8 py-4 border border-gray-200 font-semibold rounded-full bg-white hover:bg-gray-50 shadow-sm transition-all duration-300 w-full sm:w-auto hover:text-primary text-secondary" style="font-size: 16px !important;">
+            Contacto
+          </a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .hero-split-active {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+</style>
+
+<script>
+  // Eliminamos GSAP Reveal para evitar flickers en Safari. 
+  // El contenido ya es visible por CSS puro desde el servidor.
+</script>

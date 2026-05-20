@@ -1,0 +1,40 @@
+---
+import { config } from '../data/config';
+
+// Obtenemos el ID de Analytics de la configuración central
+const analyticsId = config.analyticsId;
+---
+
+<!-- 
+  Este script se inyecta en línea y evalúa el consentimiento en el cliente.
+  Solo si existe "gdpr_consent" en localStorage inyecta el script de tracking.
+-->
+<script is:inline define:vars={{ analyticsId }}>
+  window.loadAnalytics = function() {
+    // Evitar carga doble
+    if (window.analyticsLoaded || !analyticsId) return;
+
+    console.log(`[RGPD Compliant] Iniciando inyección dinámica de Analytics (${analyticsId})...`);
+
+    // Inyectar Script de Google Tag Manager o similar
+    const script = document.createElement('script');
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${analyticsId}`;
+    script.async = true;
+    document.head.appendChild(script);
+
+    // Inicializar dataLayer
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); }
+    window.gtag('js', new Date());
+    window.gtag('config', analyticsId, {
+      anonymize_ip: true // Capa extra de protección europea recomendada
+    });
+
+    window.analyticsLoaded = true;
+  };
+
+  // Evaluar inmediatamente si ya existía el consentimiento previo
+  if (localStorage.getItem("gdpr_consent") === "true") {
+    window.loadAnalytics();
+  }
+</script>

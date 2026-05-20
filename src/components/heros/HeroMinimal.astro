@@ -1,0 +1,64 @@
+---
+import { config } from '../../data/config';
+---
+<section class="relative bg-white min-h-[100svh] !important w-full flex !important flex-col !important justify-start !important items-center !important p-0 !important m-0 !important pt-[180px] sm:pt-[200px] !important pb-10 !important box-border !important overflow-hidden z-[1]" style="-webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;">
+  
+  <!-- Detalles Geométricos Minimalistas -->
+  <div class="absolute top-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-200 to-transparent pointer-events-none"></div>
+  <div class="absolute left-1/2 -translate-x-1/2 top-0 w-[1px] h-32 bg-gradient-to-b from-gray-200 to-transparent pointer-events-none"></div>
+  <div class="absolute bottom-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-200 to-transparent pointer-events-none"></div>
+
+  <div class="max-w-5xl mx-auto relative z-10 text-center animate-fade-up w-full">
+    
+    <span class="animate-safari block font-bold tracking-[0.2em] uppercase mb-10" style="color: #0077B6 !important; font-size: 14px !important; line-height: 20px !important;">
+      — {config.hero.badge} —
+    </span>
+    
+    <h1 class="animate-safari font-black tracking-tight mb-10 leading-[1.05] text-balance" style="color: #1a1a1a !important; font-size: clamp(40px, 9vw, 90px) !important; line-height: 1.05 !important;">
+      <Fragment set:html={config.hero.title} />
+    </h1>
+    
+    <p class="animate-safari mb-14 leading-relaxed text-balance max-w-3xl mx-auto font-light" style="color: #6B7280 !important; font-size: 24px !important; line-height: 36px !important;">
+      {config.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+      <a href="/contacto" class="js-reserva-btn animate-safari inline-flex items-center justify-center px-10 py-5 border border-transparent font-bold rounded-full shadow-2xl transition-all w-full sm:w-auto" style="background-color: #1a1a1a !important; color: #FFFFFF !important; font-size: 18px !important;">
+        Reserva Cita
+      </a>
+      <a href="/servicios" class="animate-safari inline-flex items-center justify-center px-10 py-5 font-bold transition-colors underline underline-offset-8 decoration-primary/30 hover:decoration-primary w-full sm:w-auto" style="color: #1a1a1a !important; font-size: 18px !important;">
+        Explorar Tratamientos
+      </a>
+    </div>
+
+  </div>
+</section>
+    
+    <p class="animate-safari mb-14 leading-relaxed text-balance max-w-3xl mx-auto font-light" style="color: #6B7280 !important; font-size: 24px !important; line-height: 36px !important;">
+      {config.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+      <a href="/contacto" class="js-reserva-btn animate-safari inline-flex items-center justify-center px-10 py-5 border border-transparent font-bold rounded-full shadow-2xl transition-all w-full sm:w-auto" style="background-color: #1a1a1a !important; color: #FFFFFF !important; font-size: 18px !important;">
+        Reserva Cita
+      </a>
+      <a href="/servicios" class="animate-safari inline-flex items-center justify-center px-10 py-5 font-bold transition-colors underline underline-offset-8 decoration-primary/30 hover:decoration-primary w-full sm:w-auto" style="color: #1a1a1a !important; font-size: 18px !important;">
+        Explorar Tratamientos
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style is:global>
+  .hero-minimal-active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: grid !important;
+  }
+</style>
+
+<script>
+  // Eliminamos GSAP Reveal para evitar flickers en Safari.
+  // El contenido ya es visible por CSS puro desde el servidor.
+</script>

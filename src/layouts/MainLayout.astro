@@ -1,0 +1,84 @@
+---
+import '../styles/global.css';
+import '../styles/style.css';
+import { config } from '../data/config';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "Clínica Dental Kyomu | Tu sonrisa, nuestra prioridad", 
+  description = "En Clínica Dental Kyomu en Leganés, combinamos tecnología avanzada con un trato humano y cercano. Especialistas en Implantes, Ortodoncia Invisible y Estética Dental." 
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    
+    <!-- Icons & Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="progress-bar-container">
+        <div class="progress-bar"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="/" class="logo">Kyomu</a>
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Inicio</a></li>
+                    <li><a href="/nosotros" class="nav-link">Nosotros</a></li>
+                    <li><a href="/servicios" class="nav-link">Servicios</a></li>
+                    <li><a href="/equipo" class="nav-link">Equipo</a></li>
+                    <li><a href="/contacto" class="nav-link">Contacto</a></li>
+                    <li class="nav-cta-wrapper"><a href="https://wa.me/34623344150?text=Hola,%20me%20gustaría%20solicitar%20una%20cita%20en%20Kyomu." target="_blank" class="btn btn-primary nav-cta">Pedir Cita</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer style="padding: 60px 0; border-top: 1px solid #EEE; text-align: center;">
+        <div class="container">
+            <h2 class="logo" style="margin-bottom: 20px;">Kyomu</h2>
+            <p style="color: var(--text-muted);">&copy; {new Date().getFullYear()} Clínica Dental Kyomu. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/34623344150?text=Hola,%20me%20gustaría%20solicitar%20una%20cita%20en%20Kyomu." target="_blank" class="floating-whatsapp">
+        <i class="fab fa-whatsapp"></i>
+        <span>Pedir Cita</span>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" is:inline></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js" is:inline></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" is:inline></script>
+    <script src="/script.js" is:inline></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+---
+import { config } from '../../data/config';
+---
+<section class="relative min-h-[100svh] !important w-full flex !important flex-col !important justify-start !important items-center !important p-0 !important m-0 !important pt-[180px] sm:pt-[200px] !important pb-10 !important box-border !important overflow-hidden bg-[#0F172A] z-[1]" style="-webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;">
+  
+  <!-- Animated Mesh Background -->
+  <div class="absolute inset-0 -z-10">
+    <div class="js-mesh-circle animate-safari absolute top-[10%] left-[10%] w-[400px] h-[400px] rounded-full blur-[120px] opacity-60" style="background-color: #0077B6 !important;"></div>
+    <div class="js-mesh-circle animate-safari absolute top-[50%] right-[10%] w-[500px] h-[500px] rounded-full blur-[140px] opacity-40" style="background-color: #F59E0B !important;"></div>
+    <div class="js-mesh-circle animate-safari absolute bottom-[10%] left-[30%] w-[450px] h-[450px] rounded-full blur-[130px] opacity-50" style="background-color: #1a1a1a !important;"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full animate-fade-up">
+    <div class="glass-safari max-w-4xl mx-auto bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[3rem] p-8 sm:p-16 shadow-2xl text-center">
+      
+      <span class="inline-block py-2 px-6 rounded-full font-medium mb-10 border border-white/10 tracking-widest uppercase glass-safari" style="background-color: rgba(255,255,255,0.1) !important; color: #FFFFFF !important; font-size: 14px !important; line-height: 20px !important;">
+        {config.hero.badge}
+      </span>
+      
+      <h1 class="font-bold tracking-tight mb-8 text-balance drop-shadow-sm [&_.text-primary]:text-accent" style="color: #FFFFFF !important; font-size: clamp(36px, 7vw, 70px) !important; line-height: 1.1 !important;">
+        <Fragment set:html={config.hero.title} />
+      </h1>
+      
+      <p class="mb-12 leading-relaxed text-balance max-w-2xl mx-auto font-light" style="color: #E5E7EB !important; font-size: 24px !important; line-height: 36px !important;">
+        {config.hero.description}
+      </p>
+      
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+        <a href="/contacto" class="js-reserva-btn inline-flex items-center justify-center px-10 py-4 border border-transparent font-bold rounded-full bg-white hover:bg-opacity-90 shadow-xl w-full sm:w-auto transition-all" style="color: #1a1a1a !important; font-size: 18px !important;">
+          Reserva Cita
+        </a>
+        <a href="/servicios" class="inline-flex items-center justify-center px-10 py-4 border border-white/20 hover:border-white/40 font-bold rounded-full bg-white/5 backdrop-blur-sm transition-all duration-300 w-full sm:w-auto glass-safari" style="color: #FFFFFF !important; font-size: 18px !important;">
+          Ver Servicios
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .hero-glass-active {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+
+  // Animación suave de los círculos del fondo (Mesh Gradient)
+  const circles = document.querySelectorAll(".js-mesh-circle");
+  circles.forEach((circle, index) => {
+    gsap.to(circle, {
+      x: () => (Math.random() - 0.5) * 200,
+      y: () => (Math.random() - 0.5) * 200,
+      duration: 10 + index * 2,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      force3D: true
+    });
+  });
+
+  // Eliminamos GSAP Reveal para evitar flickers en Safari.
+</script>

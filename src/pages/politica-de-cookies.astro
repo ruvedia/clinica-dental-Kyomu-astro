@@ -1,0 +1,29 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { config } from '../data/config';
+---
+<MainLayout title={`Política de Cookies | ${config.clinicName}`}>
+  <div class="bg-slate-50 border-b border-gray-100 py-16">
+    <div class="max-w-4xl mx-auto px-4">
+      <h1 class="text-4xl md:text-5xl font-bold text-secondary text-center">Política de Cookies</h1>
+    </div>
+  </div>
+  
+  <div class="max-w-4xl mx-auto py-16 px-4">
+    <div class="prose prose-lg text-gray-600 max-w-none prose-headings:text-secondary prose-a:text-primary">
+      <p>Esta página web de <strong>{config.clinicName}</strong> utiliza cookies propias y de terceros para mejorar la experiencia del usuario y ofrecer contenidos adaptados a sus intereses.</p>
+
+      <h2>¿Qué son las cookies?</h2>
+      <p>Las cookies son pequeños archivos de texto que se almacenan en su navegador cuando visita cualquier página web. Su utilidad es que la web sea capaz de recordar su visita cuando vuelva a navegar por esa página.</p>
+
+      <h2>¿Qué cookies utilizamos?</h2>
+      <ul>
+        <li><strong>Cookies Técnicas o Necesarias:</strong> Aquellas imprescindibles para que el sitio web funcione. Permiten funcionalidades básicas como la navegación por la página y guardar sus preferencias sobre el banner de cookies.</li>
+        <li><strong>Cookies Analíticas (En su caso):</strong> Aquellas que, bien tratadas por nosotros o por terceros (como Google Analytics), nos permiten cuantificar el número de usuarios y medir estadísticamente el uso que hacen de los servicios ofertados.</li>
+      </ul>
+
+      <h2>¿Cómo deshabilitar las cookies en su navegador?</h2>
+      <p>Puede configurar su navegador para aceptar, denegar o eliminar las cookies instaladas. Los pasos varían en función del navegador utilizado (Chrome, Firefox, Safari o Edge). Considere que el bloqueo de ciertas cookies puede devaluar la calidad de la experiencia en la página web.</p>
+    </div>
+  </div>
+</MainLayout>

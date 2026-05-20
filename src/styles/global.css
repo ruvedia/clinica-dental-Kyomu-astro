@@ -1,0 +1,63 @@
+html {
+  color-interpolation-filters: sRGB;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+* { 
+  -webkit-font-smoothing: antialiased; 
+  -moz-osx-font-smoothing: grayscale; 
+}
+@import "tailwindcss";
+@config "../../tailwind.config.mjs";
+
+@layer base {
+  body {
+    @apply font-sans antialiased text-gray-800 bg-white;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold text-secondary-dark;
+  }
+  
+  /* Clases de utilidad para Safari (Glassmorphism) */
+  .glass-safari {
+    -webkit-backdrop-filter: blur(12px) !important;
+    backdrop-filter: blur(12px) !important;
+  }
+
+  /* Optimización de animaciones para Safari (GPU acceleration) */
+  .animate-safari {
+    will-change: transform, opacity;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+  }
+
+  /* Micro-interacciones puras en CSS para botones */
+  .js-reserva-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .js-reserva-btn:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+  }
+
+  /* Animación de entrada pura CSS para Heros */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.8s ease-out forwards;
+  }
+}
