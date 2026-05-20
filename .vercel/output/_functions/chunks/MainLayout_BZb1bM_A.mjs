@@ -1,7 +1,7 @@
 import { c as createComponent } from './astro-component_C2-YdCeC.mjs';
 import 'piccolore';
 import { U as createRenderInstruction, B as maybeRenderHead, T as renderTemplate, a4 as addAttribute, D as renderSlot, b9 as renderHead } from './sequence_BzuxnACm.mjs';
-import { r as renderComponent } from './entrypoint_-og_vJv4.mjs';
+import { r as renderComponent } from './entrypoint_D_IH0OCG.mjs';
 import 'clsx';
 
 async function renderScript(result, id) {
@@ -32,7 +32,7 @@ Solo necesarias
 const config = {
   clinicName: "Clínica Dental Kyomu",
   cif: "B12345678",
-  heroStyle: "background",
+  heroStyle: "split",
   // Estilos: 'split', 'background', 'minimal', 'glass', 'interactive'
   headerStyle: "classic",
   // Estilos: 'classic', 'minimal', 'centered', 'pill'

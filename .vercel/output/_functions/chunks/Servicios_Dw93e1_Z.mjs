@@ -2,7 +2,7 @@ import { c as createComponent } from './astro-component_C2-YdCeC.mjs';
 import 'piccolore';
 import { B as maybeRenderHead, b8 as unescapeHTML, T as renderTemplate } from './sequence_BzuxnACm.mjs';
 import 'clsx';
-import { c as config, r as renderScript } from './MainLayout_DUjnVnl7.mjs';
+import { c as config, r as renderScript } from './MainLayout_BZb1bM_A.mjs';
 
 const $$Servicios = createComponent(($$result, $$props, $$slots) => {
   const services = config.services;

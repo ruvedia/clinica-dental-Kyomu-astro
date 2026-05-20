@@ -2,7 +2,7 @@ export const config = {
   clinicName: "Clínica Dental Kyomu",
   cif: "B12345678",
   analyticsId: "",
-  heroStyle: "background", // Estilos: 'split', 'background', 'minimal', 'glass', 'interactive'
+  heroStyle: "split", // Estilos: 'split', 'background', 'minimal', 'glass', 'interactive'
   headerStyle: "classic", // Estilos: 'classic', 'minimal', 'centered', 'pill'
   testimonialsStyle: "slider", // Estilos: 'grid', 'slider', 'bento'
   description: "En Clínica Dental Kyomu en Leganés, combinamos tecnología avanzada con un trato humano y cercano. Especialistas en Implantes, Ortodoncia Invisible y Estética Dental.",
