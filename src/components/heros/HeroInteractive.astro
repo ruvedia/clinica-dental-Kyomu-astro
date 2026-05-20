@@ -9,15 +9,11 @@ import { Picture } from 'astro:assets';
       
       <!-- Interactive Image Side (First on Mobile) -->
       <div class="js-inter-image relative group animate-fade-up order-1 lg:order-2" style="animation-delay: 0.2s;">
-        <div class="absolute -inset-4 rounded-[4rem] blur-2xl group-hover:bg-primary/20 transition-colors duration-700 bg-primary/10"></div>
+        <div class="absolute -inset-4 rounded-[4rem] blur-2xl group-hover:bg-teal-600/20 transition-colors duration-700 bg-teal-600/10"></div>
         <div class="relative aspect-[4/5] sm:aspect-square lg:aspect-[4/5] rounded-[3.5rem] overflow-hidden shadow-2xl border-8 border-white">
-          <Picture 
-            src="/img/fisioprotema/fachada_total.jpg" 
-            formats={['avif', 'webp']}
-            fallbackFormat="jpg"
-            alt="Fachada Clínica Fisioprotema" 
-            width={1360}
-            height={644}
+          <img 
+            src="/img/2024-05-09.jpg" 
+            alt="Clínica Dental Kyomu" 
             class="w-full h-full object-cover"
             style="image-rendering: -webkit-optimize-contrast; width: 100% !important; height: 100% !important;"
           />
@@ -26,23 +22,23 @@ import { Picture } from 'astro:assets';
 
       <!-- Text Side (Second on Mobile) -->
       <div class="relative z-10 order-2 lg:order-1">
-        <span class="animate-safari inline-block py-1.5 px-4 rounded-full font-semibold mb-8 border border-primary/20 tracking-wide uppercase bg-primary/10 text-primary" style="font-size: 14px !important; line-height: 20px !important;">
+        <span class="animate-safari inline-block py-1.5 px-4 rounded-full font-semibold mb-8 border border-teal-600/20 tracking-wide uppercase bg-teal-50 text-teal-600" style="font-size: 14px !important; line-height: 20px !important;">
           {config.hero.badge}
         </span>
         
-        <h1 class="animate-safari font-bold tracking-tight mb-8 leading-[1.1] text-balance" style="color: #1a1a1a !important; font-size: clamp(28px, 6vw, 70px) !important; line-height: 1.1 !important;">
+        <h1 class="animate-safari font-bold tracking-tight mb-8 leading-[1.1] text-balance" style="color: #0f172a !important; font-size: clamp(28px, 6vw, 70px) !important; line-height: 1.1 !important;">
           <Fragment set:html={config.hero.title} />
         </h1>
         
-        <p class="animate-safari mb-10 leading-relaxed text-balance" style="color: #4B5563 !important; font-size: 20px !important; line-height: 32px !important;">
+        <p class="animate-safari mb-10 leading-relaxed text-balance" style="color: #4b5563 !important; font-size: 20px !important; line-height: 32px !important;">
           {config.hero.description}
         </p>
         
         <div class="animate-safari flex flex-col sm:flex-row items-center gap-4">
-          <button class="js-reserva-btn inline-flex items-center justify-center px-8 py-4 border border-transparent font-semibold rounded-full shadow-lg shadow-primary/30 w-full sm:w-auto transition-transform hover:scale-105 bg-primary text-white cursor-pointer" style="font-size: 16px !important;">
+          <button class="js-reserva-btn inline-flex items-center justify-center px-8 py-4 border border-transparent font-semibold rounded-full shadow-lg shadow-teal-600/30 w-full sm:w-auto transition-transform hover:scale-105 bg-teal-600 text-white cursor-pointer" style="font-size: 16px !important;">
             Reservar Cita
           </button>
-          <a href="/contacto" class="inline-flex items-center justify-center px-8 py-4 border border-gray-200 font-semibold rounded-full bg-white hover:bg-gray-50 shadow-sm transition-all duration-300 w-full sm:w-auto hover:text-primary text-secondary" style="font-size: 16px !important;">
+          <a href="/contacto" class="inline-flex items-center justify-center px-8 py-4 border border-gray-200 font-semibold rounded-full bg-white hover:bg-gray-50 shadow-sm transition-all duration-300 w-full sm:w-auto hover:text-teal-600 text-slate-800" style="font-size: 16px !important;">
             Contacto
           </a>
         </div>

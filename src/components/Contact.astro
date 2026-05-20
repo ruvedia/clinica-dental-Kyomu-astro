@@ -15,7 +15,7 @@ import { config } from '../data/config';
             Cargando mapa interactivo...
           </div>
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3042.4764!2d-3.7732!3d40.3206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd41891d4e08bfcd7%3A0xe677fbc82650570a!2sC.%20de%20Polvoranca%2C%2021%2C%2028911%20Legan%C3%A9s%2C%20Madrid!5e0!3m2!1ses!2ses!4v1713941194553!5m2!1ses!2ses" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3043.2505232490226!2d-3.766345684607869!3d40.324888979375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd418badde81e9f1%3A0x86770e0a5d6f1f62!2sCalle%20R%C3%ADo%20Duero%2C%2028%2C%2028913%20Legan%C3%A9s%2C%20Madrid!5e0!3m2!1ses!2ses!4v1713550000000" 
             class="absolute inset-0 w-full h-full border-0 transition-all duration-700 z-10" 
             allowfullscreen="" 
             loading="lazy" 
@@ -28,7 +28,7 @@ import { config } from '../data/config';
           <a 
             href={config.contact.mapsUrl} 
             target="_blank" 
-            class="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white font-bold rounded-full shadow-lg shadow-primary/30 hover:scale-105 transition-transform"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-teal-600 text-white font-bold rounded-full shadow-lg shadow-teal-600/30 hover:scale-105 transition-transform cursor-pointer"
           >
             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
             Abrir GPS (Google Maps)
@@ -36,19 +36,19 @@ import { config } from '../data/config';
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div class="bg-white p-6 rounded-2xl border border-gray-100 hover:border-primary/30 transition-colors">
-            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+          <div class="bg-white p-6 rounded-2xl border border-gray-100 hover:border-teal-600/30 transition-colors">
+            <div class="w-12 h-12 bg-teal-50 rounded-full flex items-center justify-center text-teal-600 mb-4">
                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
             </div>
-            <h4 class="font-bold text-secondary text-lg mb-1">Email</h4>
-            <p class="text-primary hover:text-secondary transition-colors"><a href={`mailto:${config.contact.email}`}>{config.contact.email}</a></p>
+            <h4 class="font-bold text-slate-900 text-lg mb-1">Email</h4>
+            <p class="text-teal-600 hover:text-teal-700 transition-colors"><a href={`mailto:${config.contact.email}`}>{config.contact.email}</a></p>
           </div>
-          <div class="bg-white p-6 rounded-2xl border border-gray-100 hover:border-primary/30 transition-colors">
-            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+          <div class="bg-white p-6 rounded-2xl border border-gray-100 hover:border-teal-600/30 transition-colors">
+            <div class="w-12 h-12 bg-teal-50 rounded-full flex items-center justify-center text-teal-600 mb-4">
                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 111.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
             </div>
-            <h4 class="font-bold text-secondary text-lg mb-1">Teléfono</h4>
-            <p class="text-primary hover:text-secondary transition-colors"><a href={`tel:${config.contact.phone.replace(/\s+/g, '')}`}>{config.contact.phone}</a></p>
+            <h4 class="font-bold text-slate-900 text-lg mb-1">Teléfono / WhatsApp</h4>
+            <p class="text-teal-600 hover:text-teal-700 transition-colors"><a href={`tel:${config.contact.phone.replace(/\s+/g, '')}`}>{config.contact.phone}</a></p>
           </div>
         </div>
       </div>
@@ -62,32 +62,32 @@ import { config } from '../data/config';
           </div>
 
           <div>
-            <label for="name" class="block text-sm font-semibold text-secondary mb-2">Nombre completo</label>
-            <input type="text" id="name" name="name" class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary transition-colors outline-none text-gray-700 bg-gray-50 transform-gpu" placeholder="Ej. Juan Pérez" required>
+            <label for="name" class="block text-sm font-semibold text-slate-900 mb-2">Nombre completo</label>
+            <input type="text" id="name" name="name" class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:ring-2 focus:ring-teal-600 focus:border-teal-600 transition-colors outline-none text-gray-700 bg-gray-50 transform-gpu" placeholder="Ej. Juan Pérez" required>
           </div>
           
           <div>
-            <label for="email" class="block text-sm font-semibold text-secondary mb-2">Correo electrónico</label>
-            <input type="email" id="email" name="email" class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary transition-colors outline-none text-gray-700 bg-gray-50 transform-gpu" placeholder="tu@email.com" required>
+            <label for="email" class="block text-sm font-semibold text-slate-900 mb-2">Correo electrónico</label>
+            <input type="email" id="email" name="email" class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:ring-2 focus:ring-teal-600 focus:border-teal-600 transition-colors outline-none text-gray-700 bg-gray-50 transform-gpu" placeholder="tu@email.com" required>
           </div>
           
           <div>
-            <label for="reason" class="block text-sm font-semibold text-secondary mb-2">Motivo de consulta</label>
-            <textarea id="reason" name="reason" rows="4" class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary transition-colors outline-none text-gray-700 bg-gray-50 transform-gpu resize-none" placeholder="Cuéntanos brevemente qué necesitas..." required></textarea>
+            <label for="reason" class="block text-sm font-semibold text-slate-900 mb-2">¿Cómo podemos ayudarte?</label>
+            <textarea id="reason" name="reason" rows="4" class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:ring-2 focus:ring-teal-600 focus:border-teal-600 transition-colors outline-none text-gray-700 bg-gray-50 transform-gpu resize-none" placeholder="Cuéntanos brevemente qué necesitas..." required></textarea>
           </div>
           
           <div class="flex items-start gap-3">
             <div class="flex items-center h-5">
-              <input id="rgpd_consent" name="rgpd_consent" type="checkbox" required class="w-4 h-4 text-primary bg-gray-50 transform-gpu border-gray-300 rounded focus:ring-2 focus:ring-primary/50 cursor-pointer">
+              <input id="rgpd_consent" name="rgpd_consent" type="checkbox" required class="w-4 h-4 text-teal-600 bg-gray-50 transform-gpu border-gray-300 rounded focus:ring-2 focus:ring-teal-600/50 cursor-pointer">
             </div>
             <div class="text-sm">
               <label for="rgpd_consent" class="font-medium text-gray-600 cursor-pointer">
-                He leído y acepto la <a href="/politica-de-privacidad" class="text-primary hover:underline transition-colors" target="_blank">Política de Privacidad</a>.
+                He leído y acepto la <a href="/politica-de-privacidad" class="text-teal-600 hover:underline transition-colors" target="_blank">Política de Privacidad</a>.
               </label>
             </div>
           </div>
           
-          <button type="submit" class="js-reserva-btn w-full py-4 px-6 border border-transparent text-lg font-bold rounded-xl text-white bg-accent hover:bg-accent-hover shadow-lg shadow-accent/20 transition-all">
+          <button type="submit" class="w-full py-4 px-6 border border-transparent text-lg font-bold rounded-xl text-white bg-slate-900 hover:bg-teal-600 shadow-lg transition-all cursor-pointer">
             Enviar Mensaje
           </button>
           

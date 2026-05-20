@@ -5,21 +5,21 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#059669', // Verde salud
-          light: '#34D399',
-          dark: '#065F46',
+          DEFAULT: '#0D9488', // Sophisticated Teal (Kyomu)
+          light: '#2DD4BF',   // Light Teal
+          dark: '#115E59',    // Dark Teal
         },
         secondary: {
-          DEFAULT: '#1E293B', // Azul Profesional
-          light: '#334155',
-          dark: '#0F172A',
+          DEFAULT: '#0F172A', // Deep Slate (Kyomu text)
+          light: '#1E293B',
+          dark: '#020617',
         },
         accent: {
-          DEFAULT: '#C84B31', // Tono teja para asegurar contraste AAA con texto blanco
-          hover: '#A03A25',
+          DEFAULT: '#0D9488', // Teal Accent
+          hover: '#0F766E',
         },
         base: {
-          cream: '#F5F5DC', // Crema suave de fondo
+          cream: '#F8FAFC',   // Surface bg
         }
       },
       fontFamily: {

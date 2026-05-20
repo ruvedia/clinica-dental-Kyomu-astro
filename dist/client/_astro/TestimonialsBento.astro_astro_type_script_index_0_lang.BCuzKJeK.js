@@ -1,0 +1,1 @@
+import{g as t}from"./index.xgxdCp6f.js";import{S as e}from"./ScrollTrigger.ak1EnQU5.js";t.registerPlugin(e);const r=()=>{t.to(".js-bento-card",{opacity:1,scale:1,y:0,duration:1,stagger:.15,ease:"elastic.out(1, 0.75)",force3D:!0,scrollTrigger:{trigger:".js-bento-card",start:"top 85%"}})};r();document.addEventListener("astro:after-swap",r);

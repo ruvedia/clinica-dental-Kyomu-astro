@@ -1,0 +1,1 @@
+import{g as t}from"./index.xgxdCp6f.js";import{S as e}from"./ScrollTrigger.ak1EnQU5.js";t.registerPlugin(e);const r=()=>{t.to(".js-testimonial-card",{opacity:1,scale:1,y:0,duration:.8,stagger:.2,ease:"back.out(1.7)",force3D:!0,scrollTrigger:{trigger:".js-testimonial-card",start:"top 85%",toggleActions:"play none none none"}})};r();document.addEventListener("astro:after-swap",r);

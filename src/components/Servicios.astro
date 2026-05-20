@@ -5,45 +5,27 @@ const services = config.services;
 <section id="servicios" class="py-16 bg-white relative overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center max-w-3xl mx-auto mb-20">
-      <h2 class="text-4xl md:text-5xl font-bold text-secondary mb-6">Nuestros Tratamientos</h2>
-      <p class="text-gray-600 text-lg leading-relaxed">Combinamos técnicas de vanguardia en fisioterapia con un acompañamiento psicológico integral para el bienestar de toda la familia.</p>
+      <span class="text-teal-600 font-semibold tracking-wider uppercase text-sm mb-4 block">Servicios Especializados</span>
+      <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Cuidado Dental Integral</h2>
+      <p class="text-gray-600 text-lg leading-relaxed">Combinamos tecnología de vanguardia y tratamientos innovadores con una atención humana, cercana y totalmente personalizada.</p>
     </div>
 
-    <!-- Sección Fisioterapia -->
-    <div class="mb-24">
-      <div class="flex items-center gap-4 mb-12">
-        <div class="w-12 h-1 px bg-primary rounded-full"></div>
-        <h3 class="text-3xl font-bold text-secondary tracking-tight">Tratamientos en Fisioterapia</h3>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-        {config.services.fisioterapia.map((service) => (
-          <div class="js-service-card bg-gray-50/50 rounded-2xl p-6 border border-gray-100/50 hover:shadow-xl hover:bg-white transition-all duration-500 group hover:-translate-y-1">
-            <div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center mb-5 shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform duration-300" set:html={service.icon}>
+    <!-- Sección Única de Tratamientos Dentales -->
+    <div class="mb-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {services.map((service) => (
+          <div class="js-service-card bg-slate-50/50 rounded-[2rem] p-8 border border-gray-100/50 hover:shadow-xl hover:bg-white transition-all duration-500 group hover:-translate-y-1 flex flex-col justify-between min-h-[300px]">
+            <div>
+              <div class="w-14 h-14 rounded-2xl bg-teal-600 text-white flex items-center justify-center mb-6 shadow-lg shadow-teal-600/20 group-hover:scale-110 transition-transform duration-300" set:html={service.icon}>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-4 leading-tight">{service.title}</h3>
+              <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                {service.description}
+              </p>
             </div>
-            <h4 class="text-lg font-bold text-secondary mb-3 leading-tight">{service.title}</h4>
-            <p class="text-gray-500 text-sm leading-relaxed">
-              {service.description}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-
-    <!-- Sección Psicología -->
-    <div>
-      <div class="flex items-center gap-4 mb-12">
-        <div class="w-12 h-1 px bg-accent rounded-full"></div>
-        <h3 class="text-3xl font-bold text-secondary tracking-tight">Psicología (Niños, Adolescentes y Adultos)</h3>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-        {config.services.psicologia.map((service) => (
-          <div class="js-service-card bg-gray-50/50 rounded-2xl p-6 border border-gray-100/50 hover:shadow-xl hover:bg-white transition-all duration-500 group hover:-translate-y-1">
-            <div class="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mb-5 shadow-lg shadow-accent/20 group-hover:scale-110 transition-transform duration-300" set:html={service.icon}>
+            <div class="text-teal-600 text-sm font-semibold flex items-center gap-2 group-hover:translate-x-2 transition-transform duration-300">
+              Saber más <i class="fas fa-arrow-right text-xs"></i>
             </div>
-            <h4 class="text-lg font-bold text-secondary mb-3 leading-tight">{service.title}</h4>
-            <p class="text-gray-500 text-sm leading-relaxed line-clamp-3 group-hover:line-clamp-none transition-all">
-              {service.description}
-            </p>
           </div>
         ))}
       </div>
@@ -55,26 +37,13 @@ const services = config.services;
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-  /**
-   * 🎓 EXPLICACIÓN GSAP (SCROLLTRIGGER):
-   * ScrollTrigger es el plugin avanzado de GSAP que ancla las animaciones a la barra vertical de desplazamiento (scroll).
-   */
   gsap.registerPlugin(ScrollTrigger);
 
   const cards = document.querySelectorAll(".js-service-card");
 
   if (cards.length > 0) {
-    // gsap.set: Preparamos las tarjetas invisibles. Se inyecta aquí (JS) y no en el CSS 
-    // para no perjudicar la web a visitantes que tengan Javascript bloqueado en su navegador.
     gsap.set(cards, { opacity: 0, y: 30 });
 
-    /**
-     * Propiedades clave del ScrollTrigger:
-     * - trigger: "#servicios" -> La animación evalúa su arranque contra la sección entera.
-     * - start: "top 85%" -> Arranca cuando la parte más alta ('top') del bloque '#servicios' sube por encima del 85% de la pantalla del usuario.
-     * - toggleActions: "play none none none" -> Solo entra 1 vez ('play'). No repite si el usuario sube hacia arriba de nuevo.
-     * - clearProps: "all" -> GSAP inyecta mucho texto en el atributo HTML 'style'. Al terminar la animación, 'clearProps' lo borra todo para devolver el control al layout responsivo normal.
-     */
     gsap.to(cards, {
       scrollTrigger: {
         trigger: "#servicios",
@@ -91,7 +60,6 @@ const services = config.services;
     });
   }
 
-  // Asegurar recalibración de posiciones
   window.addEventListener("load", () => {
     ScrollTrigger.refresh();
   });
