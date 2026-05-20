@@ -2,7 +2,7 @@ import { c as createComponent } from './astro-component_C2-YdCeC.mjs';
 import 'piccolore';
 import { B as maybeRenderHead, a4 as addAttribute, T as renderTemplate } from './sequence_BzuxnACm.mjs';
 import 'clsx';
-import { c as config } from './MainLayout_BhD-UC0F.mjs';
+import { c as config } from './MainLayout_B7cddy_1.mjs';
 
 const $$Contact = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${maybeRenderHead()}<section id="contacto" class="py-12 bg-white relative"> <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24"> <!-- Map Side --> <div class="flex flex-col"> <div class="mb-8 overflow-hidden rounded-[3rem] border border-gray-100 shadow-xl aspect-video relative group bg-slate-100 animate-pulse"> <!-- Placeholder background while loading --> <div class="absolute inset-0 flex items-center justify-center text-gray-400 text-sm font-medium z-0">
