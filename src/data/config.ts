@@ -2,7 +2,7 @@ export const config = {
   clinicName: "Clínica Dental Kyomu",
   cif: "B12345678",
   analyticsId: "",
-  description: "En Clínica Dental Kyomu en Leganés, combinamos tecnología avanzada con un trato humano y cercano.",
+  description: "En Clínica Dental Kyomu en Leganés, combinamos tecnología avanzada con un trato humano y cercano. Especialistas en Implantes, Ortodoncia Invisible y Estética Dental.",
   contact: {
     phone: "623 34 41 50",
     whatsapp: "623 34 41 50",
@@ -18,8 +18,15 @@ export const config = {
     linkedin: "#"
   },
   schedule: [
-    { day: "L - J", hours: "10:00 - 20:00", highlight: false },
+    { day: "Lunes a Jueves", hours: "10:00 - 20:00", highlight: false },
     { day: "Viernes", hours: "10:00 - 19:00", highlight: true },
     { day: "Sábado y Domingo", hours: "Cerrado", highlight: true, closed: true }
+  ],
+  navigation: [
+    { name: "Inicio", href: "/" },
+    { name: "Nosotros", href: "/nosotros" },
+    { name: "Servicios", href: "/servicios" },
+    { name: "Equipo", href: "/equipo" },
+    { name: "Contacto", href: "/contacto" }
   ]
 };

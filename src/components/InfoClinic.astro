@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+---
+<section id="nosotros" class="py-12 bg-white relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      
+      <!-- Image Side -->
+      <div class="relative order-2 lg:order-1">
+        <div class="absolute inset-0 bg-secondary rounded-[3rem] rotate-3 opacity-10 scale-105 transition-transform duration-500 hover:rotate-6"></div>
+        <div class="animate-safari relative aspect-[4/5] sm:aspect-[3/2] lg:aspect-[4/5] bg-gray-200 rounded-[3rem] overflow-hidden shadow-xl border-8 border-white group">
+          
+          <Image 
+            src="/img/fisioprotema/clinica_interior.jpg" 
+            width={800}
+            height={600}
+            alt="Espacio clínico premium de Fisioprotema" 
+            format="webp" 
+            loading="lazy" 
+            class="absolute inset-0 w-full h-full object-cover" 
+          />
+          
+          <!-- Decorative overlay -->
+          <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/30 rounded-full blur-2xl"></div>
+        </div>
+      </div>
+
+      <!-- Content Side -->
+      <div class="order-1 lg:order-2">
+        <span class="text-primary font-semibold tracking-wider uppercase text-sm mb-4 block">Nuestra Filosofía</span>
+        <h2 class="text-3xl md:text-5xl font-bold text-secondary mb-6 leading-tight">
+          Entendemos el cuerpo como un <span class="text-primary">todo</span>.
+        </h2>
+        
+        <div class="space-y-6 text-gray-600 text-lg leading-relaxed">
+          <p>
+            En Fisioprotema no solo tratamos los síntomas, buscamos el origen del problema. Creemos firmemente en que cada paciente es único, por lo que cada plan de tratamiento debe ser personalizado y adaptado a sus objetivos.
+          </p>
+          <p>
+            Nuestro equipo de especialistas en fisioterapia y osteopatía trabaja conjuntamente aplicando técnicas manuales avanzadas y tecnología de recuperación de última generación para asegurar una recuperación óptima y duradera.
+          </p>
+        </div>
+
+        <ul class="mt-10 space-y-5 border-t border-gray-200 pt-8">
+          <li class="flex items-center gap-4">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+              <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+            </div>
+            <span class="text-gray-800 font-medium text-lg">Trato 100% personalizado</span>
+          </li>
+          <li class="flex items-center gap-4">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+              <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+            </div>
+            <span class="text-gray-800 font-medium text-lg">Tecnología de vanguardia</span>
+          </li>
+          <li class="flex items-center gap-4">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+              <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+            </div>
+            <span class="text-gray-800 font-medium text-lg">Instalaciones premium</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>

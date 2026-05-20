@@ -1,0 +1,17 @@
+---
+import { config } from '../data/config';
+import HeaderClassic from './headers/HeaderClassic.astro';
+import HeaderMinimal from './headers/HeaderMinimal.astro';
+import HeaderCentered from './headers/HeaderCentered.astro';
+import HeaderPill from './headers/HeaderPill.astro';
+
+const style = config.headerStyle || 'classic';
+---
+
+{style === 'classic' && <HeaderClassic />}
+{style === 'minimal' && <HeaderMinimal />}
+{style === 'centered' && <HeaderCentered />}
+{style === 'pill' && <HeaderPill />}
+
+{/* Fallback */}
+{!['classic', 'minimal', 'centered', 'pill'].includes(style) && <HeaderClassic />}

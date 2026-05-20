@@ -1,0 +1,69 @@
+---
+import { config } from '../../data/config';
+---
+<header class="js-header fixed top-0 left-0 w-full z-[100] bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300 glass-safari">
+  
+  <!-- Logo Row (Centered) -->
+  <div class="py-4 border-b border-gray-50 flex justify-center items-center relative px-12">
+    <a href="/" class="flex flex-col items-center gap-1 group">
+      <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-heading font-bold text-xl shadow-xl shadow-primary/20 group-hover:scale-110 transition-transform duration-500">
+        {config.clinicName.substring(0,2).toUpperCase()}
+      </div>
+      <span class="font-heading font-bold text-xl text-secondary tracking-widest uppercase">{config.clinicName}</span>
+    </a>
+
+    <!-- Mobile Button (Absolute to stay in header but allows centrado del logo) -->
+    <div class="absolute right-4 top-1/2 -translate-y-1/2 md:hidden">
+      <button type="button" class="js-mobile-btn text-gray-500 p-2 focus:outline-none">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Navigation Row (Centered) -->
+  <nav class="hidden md:flex justify-center items-center py-3 bg-slate-50/50">
+    <ul class="flex space-x-6 lg:space-x-12">
+      {config.navigation.map(link => (
+        <li>
+          <a href={link.href} class="text-[10px] lg:text-xs font-bold uppercase tracking-[0.15em] text-gray-400 hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary/30">
+            {link.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="js-mobile-menu hidden md:hidden bg-white px-6 py-8 space-y-6 animate-in slide-in-from-top-4 duration-300 shadow-inner">
+    {config.navigation.map(link => (
+      <a href={link.href} class="block text-center text-secondary font-bold text-lg uppercase tracking-widest py-3 border-b border-gray-50">{link.name}</a>
+    ))}
+    <a href="/contacto" class="block w-full text-center py-4 bg-secondary text-white rounded-lg font-bold">Reserva tu Cita</a>
+  </div>
+</header>
+
+<style is:global>
+  .js-header {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+</style>
+
+<script>
+  const setupCenteredNavigation = () => {
+    const btn = document.querySelector('.js-mobile-btn');
+    const menu = document.querySelector('.js-mobile-menu');
+    
+    if (btn && menu) {
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+    }
+  };
+
+  setupCenteredNavigation();
+  document.addEventListener('astro:after-swap', setupCenteredNavigation);
+</script>

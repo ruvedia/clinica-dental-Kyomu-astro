@@ -1,0 +1,22 @@
+---
+import { config } from '../data/config';
+import HeroSplit from './heros/HeroSplit.astro';
+import HeroBackground from './heros/HeroBackground.astro';
+import HeroMinimal from './heros/HeroMinimal.astro';
+import HeroGlass from './heros/HeroGlass.astro';
+import HeroInteractive from './heros/HeroInteractive.astro';
+
+const style = config.heroStyle?.toLowerCase() || 'split';
+---
+
+{style === 'background' ? (
+  <HeroBackground />
+) : style === 'minimal' ? (
+  <HeroMinimal />
+) : style === 'glass' ? (
+  <HeroGlass />
+) : style === 'interactive' ? (
+  <HeroInteractive />
+) : (
+  <HeroSplit />
+)}

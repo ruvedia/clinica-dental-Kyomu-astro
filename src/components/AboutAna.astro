@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+---
+<section id="bio" class="py-20 bg-gray-50 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      
+      <!-- Image Side -->
+      <div class="relative order-2 lg:order-1 flex justify-center">
+        <div class="absolute inset-0 bg-primary rounded-[3rem] -rotate-3 opacity-10 scale-105"></div>
+        <div class="relative w-full max-w-md aspect-[4/5] bg-gray-200 rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
+          <Image 
+            src="/img/fisioprotema/ana.jpg" 
+            width={924}
+            height={924}
+            alt="Ana Margüenda - Psicóloga y Educadora" 
+            class="absolute inset-0 w-full h-full object-cover" 
+          />
+        </div>
+        <!-- Decorative Badge -->
+        <div class="absolute -bottom-6 -right-6 md:right-0 bg-white p-6 rounded-3xl shadow-xl border border-gray-100 flex items-center gap-4 animate-bounce-slow">
+            <div class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center text-primary font-bold text-xl">+25</div>
+            <div class="text-sm font-bold text-secondary leading-tight">Años de<br/>Experiencia</div>
+        </div>
+      </div>
+
+      <!-- Content Side -->
+      <div class="order-1 lg:order-2">
+        <span class="text-primary font-bold tracking-widest uppercase text-sm mb-6 block">Sobre la directora</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-secondary mb-8 leading-tight">
+          Hola, soy <span class="text-primary italic">Ana Margüenda</span>.
+        </h2>
+        
+        <div class="space-y-6 text-gray-600 text-xl leading-relaxed font-light">
+          <p>
+            Cuento con una larga experiencia de <strong>más de 25 años</strong> en el campo de la psicología y educación. He trabajado con adultos, niños, adolescentes y familias para ayudarles a superar una amplia variedad de problemas y contribuir a su bienestar emocional, social y familiar.
+          </p>
+          <p class="italic bg-white p-6 rounded-2xl border-l-4 border-primary shadow-sm">
+            "En mi consulta encontraréis un ambiente de cercanía, calidez y comprensión envuelto en un acompañamiento profesional."
+          </p>
+        </div>
+
+        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <a href="#contacto" class="px-8 py-4 bg-secondary text-white font-bold rounded-full hover:bg-secondary/90 transition-colors text-center">Contactar conmigo</a>
+            <a href="#servicios" class="px-8 py-4 border-2 border-gray-200 text-secondary font-bold rounded-full hover:bg-gray-100 transition-colors text-center">Ver tratamientos</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+    .animate-bounce-slow {
+        animation: bounce-slow 4s infinite ease-in-out;
+    }
+    @keyframes bounce-slow {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+    }
+</style>
