@@ -4,6 +4,29 @@ import Contact from '../components/Contact.astro';
 import { config } from '../data/config';
 import nodemailer from 'nodemailer';
 
+import fs from 'node:fs';
+import path from 'node:path';
+
+// Local .env loader fallback for development environment
+try {
+  const envPath = path.resolve(process.cwd(), '.env');
+  if (fs.existsSync(envPath)) {
+    const envContent = fs.readFileSync(envPath, 'utf-8');
+    envContent.split(/\r?\n/).forEach(line => {
+      const trimmed = line.trim();
+      if (trimmed && !trimmed.startsWith('#')) {
+        const [key, ...valueParts] = trimmed.split('=');
+        const value = valueParts.join('=').trim();
+        if (key && value) {
+          process.env[key.trim()] = value;
+        }
+      }
+    });
+  }
+} catch (e) {
+  console.error('Error loading local .env file:', e);
+}
+
 let success = false;
 let errorMsg = "";
 

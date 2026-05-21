@@ -1,14 +1,34 @@
 import { c as createComponent } from './astro-component_C2-YdCeC.mjs';
 import 'piccolore';
 import { T as renderTemplate, B as maybeRenderHead } from './sequence_BzuxnACm.mjs';
-import { r as renderComponent } from './entrypoint_uYE-PROV.mjs';
-import { c as config, $ as $$MainLayout } from './MainLayout_Cyb-1hYg.mjs';
-import { $ as $$Contact } from './Contact_Dr1yBhjU.mjs';
+import { r as renderComponent } from './entrypoint_DJOs7Hwg.mjs';
+import { c as config, $ as $$MainLayout } from './MainLayout_EIdqV5qb.mjs';
+import { $ as $$Contact } from './Contact_Do7wd-EE.mjs';
 import nodemailer from 'nodemailer';
+import fs from 'node:fs';
+import nodePath from 'node:path';
 
 const $$Contacto = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$props, $$slots);
   Astro2.self = $$Contacto;
+  try {
+    const envPath = nodePath.resolve(process.cwd(), ".env");
+    if (fs.existsSync(envPath)) {
+      const envContent = fs.readFileSync(envPath, "utf-8");
+      envContent.split(/\r?\n/).forEach((line) => {
+        const trimmed = line.trim();
+        if (trimmed && !trimmed.startsWith("#")) {
+          const [key, ...valueParts] = trimmed.split("=");
+          const value = valueParts.join("=").trim();
+          if (key && value) {
+            process.env[key.trim()] = value;
+          }
+        }
+      });
+    }
+  } catch (e) {
+    console.error("Error loading local .env file:", e);
+  }
   let success = false;
   let errorMsg = "";
   if (Astro2.request.method === "POST") {
