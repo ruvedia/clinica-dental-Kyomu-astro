@@ -1,9 +1,9 @@
 import { c as createComponent } from './astro-component_C2-YdCeC.mjs';
 import 'piccolore';
 import { T as renderTemplate, B as maybeRenderHead } from './sequence_BzuxnACm.mjs';
-import { r as renderComponent } from './entrypoint_DJOs7Hwg.mjs';
-import { c as config, $ as $$MainLayout } from './MainLayout_EIdqV5qb.mjs';
-import { $ as $$Contact } from './Contact_Do7wd-EE.mjs';
+import { r as renderComponent } from './entrypoint_C6RGDqt5.mjs';
+import { c as config, $ as $$MainLayout } from './MainLayout_D3C-pk1D.mjs';
+import { $ as $$Contact } from './Contact_BCbDryLK.mjs';
 import nodemailer from 'nodemailer';
 import fs from 'node:fs';
 import nodePath from 'node:path';
@@ -62,9 +62,12 @@ const $$Contacto = createComponent(async ($$result, $$props, $$slots) => {
             const smtpHost = "smtp.office365.com";
             const smtpPort = parseInt("587");
             const smtpUser = "ruvedia@hotmail.com";
-            const smtpPass = "Spiderman-5";
+            const smtpPass = process.env.SMTP_PASS;
             const contactReceiver = "ruvedia@hotmail.com";
-            if (!smtpHost || !smtpUser || !smtpPass) ; else {
+            if (!smtpHost || !smtpUser || !smtpPass) {
+              console.error("[SMTP CONFIG ERROR] Falta configurar variables de entorno SMTP seguras en Vercel.");
+              errorMsg = "El backend del formulario está activo pero requiere configurar las credenciales SMTP en Vercel.";
+            } else {
               const transporter = nodemailer.createTransport({
                 host: smtpHost,
                 port: smtpPort,
@@ -80,7 +83,7 @@ const $$Contacto = createComponent(async ($$result, $$props, $$slots) => {
                 }
               });
               const sanitizedSubject = `Web Kyomu: Nueva Consulta de ${name.slice(0, 40)}`;
-              const mailOptions = {
+              const mailOptionsAdmin = {
                 from: `"${config.clinicName}" <${smtpUser}>`,
                 to: contactReceiver,
                 replyTo: email,
@@ -124,7 +127,65 @@ Consiento RGPD: Sí`,
                 </div>
               `
               };
-              await transporter.sendMail(mailOptions);
+              const mailOptionsPatient = {
+                from: `"${config.clinicName}" <${smtpUser}>`,
+                to: email,
+                subject: `Hemos recibido tu consulta | ${config.clinicName}`,
+                text: `Hola ${name},
+
+Hemos recibido correctamente tu consulta a través de nuestra web.
+
+Resumen de tu mensaje:
+"${reason}"
+
+Nos pondremos en contacto contigo lo antes posible.
+
+Atentamente,
+El equipo de ${config.clinicName}`,
+                html: `
+                <div style="font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 30px; border: 1px solid #f0f0f0; border-radius: 24px; background-color: #ffffff; color: #334155; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+                  <div style="text-align: center; margin-bottom: 30px;">
+                    <div style="display: inline-block; padding: 12px; background-color: #f0fdfa; border-radius: 16px; color: #0d9488;">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: 0 auto;"><path d="M12 2C9 2 7 4 7 8c0 3 1.5 6 3 7 1.5 1 2 2.5 2 4v1a1 1 0 0 0 2 0v-1c0-1.5.5-3 2-4 1.5-1 3-4 3-7 0-4-2-6-5-6z"/></svg>
+                    </div>
+                    <h2 style="color: #0f172a; margin: 15px 0 5px 0; font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">${config.clinicName}</h2>
+                    <span style="color: #0d9488; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Confirmación de Contacto</span>
+                  </div>
+                  <hr style="border: 0; border-top: 1px solid #f1f5f9; margin-bottom: 30px;">
+                  
+                  <p style="font-size: 16px; line-height: 1.6; color: #1e293b; margin-bottom: 20px;">
+                    Hola <strong>${name}</strong>,
+                  </p>
+                  
+                  <p style="font-size: 14px; line-height: 1.6; color: #475569; margin-bottom: 20px;">
+                    Hemos recibido correctamente tu consulta a través de nuestra página web. Queremos agradecerte la confianza depositada en <strong>${config.clinicName}</strong>.
+                  </p>
+
+                  <div style="background-color: #f8fafc; padding: 20px; border-radius: 16px; border: 1px solid #f1f5f9; margin-bottom: 20px;">
+                    <p style="margin: 0 0 8px 0; font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">Resumen de tu consulta:</p>
+                    <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #334155; font-style: italic;">"${reason}"</p>
+                  </div>
+                  
+                  <p style="font-size: 14px; line-height: 1.6; color: #475569; margin-bottom: 30px;">
+                    Nuestro equipo médico y de atención al paciente está revisando tu mensaje. <strong>Nos pondremos en contacto contigo lo antes posible</strong> para coordinar tu cita o responder a tus preguntas.
+                  </p>
+
+                  <div style="text-align: center; margin-bottom: 30px;">
+                    <a href="tel:${config.contact.phone.replace(/\s+/g, "")}" style="display: inline-block; background-color: #0d9488; color: #ffffff; text-decoration: none; padding: 12px 30px; font-size: 14px; font-weight: 700; border-radius: 12px; box-shadow: 0 4px 6px rgba(13, 148, 136, 0.15);">Llamar a la Clínica</a>
+                  </div>
+                  
+                  <hr style="border: 0; border-top: 1px solid #f1f5f9; margin-top: 30px; margin-bottom: 20px;">
+                  <div style="font-size: 10px; color: #94a3b8; text-align: center; line-height: 1.5;">
+                    Este es un mensaje automático de confirmación. Por favor, no respondas directamente a este correo.<br>
+                    <strong>Clínica Dental Kyomu</strong> | Tel: ${config.contact.phone} | Dirección: ${config.contact.address}
+                  </div>
+                </div>
+              `
+              };
+              await Promise.all([
+                transporter.sendMail(mailOptionsAdmin),
+                transporter.sendMail(mailOptionsPatient)
+              ]);
               success = true;
             }
           }
