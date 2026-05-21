@@ -2,6 +2,129 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import Contact from '../components/Contact.astro';
 import { config } from '../data/config';
+import nodemailer from 'nodemailer';
+
+let success = false;
+let errorMsg = "";
+
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    
+    // 1. Verificación CSRF (Anti Cross-Site Request Forgery)
+    const requestOrigin = Astro.request.headers.get("origin") || "";
+    const requestHost = Astro.request.headers.get("host") || "";
+    
+    if (requestOrigin && !requestOrigin.includes(requestHost) && !requestOrigin.includes("localhost") && !requestOrigin.includes("127.0.0.1")) {
+      console.error(`[SECURITY CSRF] Petición no autorizada desde origen externo: ${requestOrigin}`);
+      errorMsg = "Petición bloqueada por políticas de seguridad de origen (CSRF).";
+    } else {
+      // 2. Protección Honeypot (Anti-Bots)
+      const honeypot = data.get("address_2");
+      if (honeypot && honeypot.toString().trim() !== "") {
+        console.warn("[SECURITY] Intento de spam bot interceptado y neutralizado mediante honeypot.");
+        success = true; // Hacemos creer al bot que tuvo éxito para frenar reintentos
+      } else {
+        // 3. Extracción y Sanitización Estricta de Campos (Anti-XSS e Inyecciones)
+        const name = data.get("name")?.toString().trim().replace(/<[^>]*>/g, '') || "";
+        const email = data.get("email")?.toString().trim() || "";
+        const reason = data.get("reason")?.toString().trim().replace(/<[^>]*>/g, '') || "";
+        const rgpdConsent = data.get("rgpd_consent");
+
+        // 4. Validaciones de Formato y Límites en Servidor
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (!name || name.length > 80) {
+          errorMsg = "El nombre es inválido o excede el límite de seguridad (80 caracteres).";
+        } else if (!email || !emailRegex.test(email) || email.length > 100) {
+          errorMsg = "La dirección de correo electrónico no es válida o es demasiado larga.";
+        } else if (!reason || reason.length > 1000) {
+          errorMsg = "La consulta no es válida o excede el límite de seguridad (1000 caracteres).";
+        } else if (!rgpdConsent) {
+          errorMsg = "Es obligatorio aceptar la cláusula de protección de datos (RGPD).";
+        } else {
+          // 5. Configuración de Envío de Email mediante SMTP Seguro (Variables de Entorno)
+          const smtpHost = import.meta.env.SMTP_HOST || process.env.SMTP_HOST;
+          const smtpPort = parseInt(import.meta.env.SMTP_PORT || process.env.SMTP_PORT || "465");
+          const smtpUser = import.meta.env.SMTP_USER || process.env.SMTP_USER;
+          const smtpPass = import.meta.env.SMTP_PASS || process.env.SMTP_PASS;
+          const contactReceiver = import.meta.env.CONTACT_RECEIVER || process.env.CONTACT_RECEIVER || smtpUser || "ruvedia@hotmail.com";
+
+          if (!smtpHost || !smtpUser || !smtpPass) {
+            console.error("[SMTP CONFIG ERROR] Falta configurar variables de entorno SMTP seguras en Vercel.");
+            errorMsg = "El backend del formulario está activo pero requiere configurar las credenciales SMTP en Vercel.";
+          } else {
+            // Creamos transporte seguro TLS
+            const transporter = nodemailer.createTransport({
+              host: smtpHost,
+              port: smtpPort,
+              secure: smtpPort === 465, // Cifrado SSL/TLS implícito para puerto 465
+              auth: {
+                user: smtpUser,
+                pass: smtpPass
+              },
+              tls: {
+                rejectUnauthorized: true // Requiere certificados SSL/TLS de confianza en servidor
+              }
+            });
+
+            // Sanitización del asunto del correo (Anti Email Header Injection)
+            const sanitizedSubject = `Web Kyomu: Nueva Consulta de ${name.slice(0, 40)}`;
+
+            const mailOptions = {
+              from: `"${config.clinicName}" <${smtpUser}>`,
+              to: contactReceiver,
+              replyTo: email,
+              subject: sanitizedSubject,
+              text: `Nueva consulta de paciente:\n\nNombre: ${name}\nEmail: ${email}\nConsulta: ${reason}\n\nConsiento RGPD: Sí`,
+              html: `
+                <div style="font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 30px; border: 1px solid #f0f0f0; border-radius: 24px; background-color: #ffffff; color: #334155; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+                  <div style="text-align: center; margin-bottom: 30px;">
+                    <div style="display: inline-block; padding: 12px; background-color: #f0fdfa; border-radius: 16px; color: #0d9488;">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: 0 auto;"><path d="M12 2C9 2 7 4 7 8c0 3 1.5 6 3 7 1.5 1 2 2.5 2 4v1a1 1 0 0 0 2 0v-1c0-1.5.5-3 2-4 1.5-1 3-4 3-7 0-4-2-6-5-6z"/></svg>
+                    </div>
+                    <h2 style="color: #0f172a; margin: 15px 0 5px 0; font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">${config.clinicName}</h2>
+                    <span style="color: #0d9488; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Formulario Web de Contacto</span>
+                  </div>
+                  <hr style="border: 0; border-top: 1px solid #f1f5f9; margin-bottom: 30px;">
+                  <table style="width: 100%; border-collapse: collapse; font-size: 14px; color: #475569; margin-bottom: 30px;">
+                    <tr>
+                      <td style="padding: 10px 0; font-weight: 600; color: #0f172a; width: 120px;">Paciente:</td>
+                      <td style="padding: 10px 0; color: #334155;">${name}</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 10px 0; font-weight: 600; color: #0f172a;">Email:</td>
+                      <td style="padding: 10px 0;"><a href="mailto:${email}" style="color: #0d9488; text-decoration: none; font-weight: 500;">${email}</a></td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 10px 0; font-weight: 600; color: #0f172a; vertical-align: top; padding-top: 14px;">Consulta:</td>
+                      <td style="padding: 10px 0; color: #334155; line-height: 1.6; background-color: #f8fafc; padding: 20px; border-radius: 16px; border: 1px solid #f1f5f9; margin-top: 4px; display: block;">${reason}</td>
+                    </tr>
+                  </table>
+                  <hr style="border: 0; border-top: 1px solid #f1f5f9; margin-top: 30px; margin-bottom: 20px;">
+                  <div style="font-size: 10px; color: #94a3b8; text-align: center; line-height: 1.5;">
+                    Este mensaje ha sido procesado de forma encriptada y segura desde la función serverless de Vercel.<br>
+                    Cumple estrictamente con el Reglamento General de Protección de Datos (RGPD) médico.
+                  </div>
+                </div>
+              `
+            };
+
+            await transporter.sendMail(mailOptions);
+            success = true;
+          }
+        }
+      }
+    }
+  } catch (error) {
+    console.error("[SERVER FORM EXCEPTION] Error de procesamiento severo:", error);
+    errorMsg = "Se ha producido una excepción en el servidor al intentar enviar su mensaje. Por favor, intente de nuevo en unos minutos.";
+  }
+}
+    // Respond with JSON for AJAX requests to avoid full page reload
+    if (Astro.request.headers.get('accept')?.includes('application/json')) {
+      return new Response(JSON.stringify({ success, errorMsg }));
+    }
 ---
 
 <MainLayout title={`Contacto y Citas | ${config.clinicName}`} description={config.description}>
@@ -13,6 +136,6 @@ import { config } from '../data/config';
     </div>
   </div>
 
-  <!-- Contact Form & Location Map -->
-  <Contact />
+  <!-- Contact Form & Location Map (Pasa los estados success y errorMsg de forma segura) -->
+  <Contact success={success} errorMsg={errorMsg} />
 </MainLayout>

@@ -1,0 +1,45 @@
+import { c as createComponent } from './astro-component_C2-YdCeC.mjs';
+import 'piccolore';
+import { T as renderTemplate, B as maybeRenderHead, a4 as addAttribute } from './sequence_BzuxnACm.mjs';
+import { r as renderComponent } from './entrypoint_tQs4wuKp.mjs';
+import { $ as $$MainLayout, c as config } from './MainLayout_BE9lXY21.mjs';
+
+const $$PoliticaDePrivacidad = createComponent(($$result, $$props, $$slots) => {
+  return renderTemplate`${renderComponent($$result, "MainLayout", $$MainLayout, { "title": `Política de Privacidad | ${config.clinicName}` }, { "default": ($$result2) => renderTemplate`  ${maybeRenderHead()}<div class="bg-slate-50 border-b border-gray-100 py-16 sm:py-24"> <div class="max-w-4xl mx-auto px-4 text-center"> <span class="text-teal-600 font-semibold tracking-wider uppercase text-sm mb-4 block">Protección de Datos</span> <h1 class="text-4xl md:text-6xl font-bold text-slate-900 leading-tight">Política de Privacidad</h1> </div> </div> <div class="max-w-4xl mx-auto py-16 sm:py-24 px-4"> <div class="prose prose-lg text-gray-600 max-w-none prose-headings:text-slate-900 prose-a:text-teal-600"> <p class="text-xl leading-relaxed text-gray-500 mb-12">
+Para <strong>${config.clinicName}</strong>, garantizar la máxima protección y confidencialidad en el tratamiento de sus datos personales es una prioridad absoluta. A continuación le detallamos de manera clara el reglamento de protección de datos (RGPD) aplicable.
+</p> <!-- 1. Responsable del Tratamiento --> <div class="bg-slate-50 rounded-[2.5rem] p-8 sm:p-10 border border-gray-100/80 mb-10 shadow-sm relative overflow-hidden group"> <div class="absolute -right-4 -bottom-4 w-32 h-32 bg-teal-600/5 rounded-full blur-2xl"></div> <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3"> <span class="w-8 h-8 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-sm font-bold">1</span>
+Responsable del Tratamiento
+</h2> <ul class="list-none p-0 m-0 space-y-4 text-sm sm:text-base text-gray-600"> <li class="flex items-center gap-3"><strong class="w-24 text-slate-900">Identidad:</strong> ${config.clinicName}</li> <li class="flex items-center gap-3"><strong class="w-24 text-slate-900">CIF / NIF:</strong> ${config.cif}</li> <li class="flex items-center gap-3"><strong class="w-24 text-slate-900">Dirección:</strong> ${config.contact.address}</li> <li class="flex items-center gap-3"><strong class="w-24 text-slate-900">Email:</strong> <a${addAttribute(`mailto:${config.contact.email}`, "href")} class="text-teal-600 font-semibold">${config.contact.email}</a></li> </ul> </div> <!-- 2. Finalidad --> <div class="border-l-4 border-teal-600 pl-6 mb-10"> <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3"> <span class="w-8 h-8 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-sm font-bold">2</span>
+¿Con qué finalidad tratamos sus datos?
+</h2> <p class="leading-relaxed">
+Los datos personales facilitados por el usuario a través de nuestros formularios (nombre, correo electrónico, teléfono y motivo de su consulta) son tratados única y exclusivamente con la finalidad de:
+</p> <ul class="space-y-2"> <li>Gestionar y coordinar su cita médica o dental.</li> <li>Atender y resolver las consultas recibidas de forma personalizada.</li> <li>Mantenerle informado sobre las novedades relacionadas estrictamente con sus citas.</li> </ul> </div> <!-- 3. Base Legal --> <div class="mb-10"> <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3"> <span class="w-8 h-8 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-sm font-bold">3</span>
+Base legal del tratamiento
+</h2> <p class="leading-relaxed">
+La legitimación legal para poder tratar sus datos reside únicamente en el <strong>consentimiento explícito</strong> del propio usuario. Este es otorgado libremente al seleccionar la casilla de verificación correspondiente en nuestros formularios web antes de enviar su consulta.
+</p> </div> <!-- 4. Conservación --> <div class="mb-10"> <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3"> <span class="w-8 h-8 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-sm font-bold">4</span>
+Conservación de los datos
+</h2> <p class="leading-relaxed">
+Sus datos se conservarán durante el periodo que sea estrictamente necesario para cumplir con la finalidad de su consulta médica o de la posterior relación asistencial. Todo ello en cumplimiento riguroso con los plazos legales establecidos para la gestión de historiales sanitarios en el sector.
+</p> </div> <!-- 5. Sus Derechos --> <div class="bg-teal-50/30 rounded-[2.5rem] p-8 sm:p-10 border border-teal-600/10 mb-12 shadow-sm"> <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3"> <span class="w-8 h-8 rounded-xl bg-teal-600 text-white flex items-center justify-center text-sm font-bold"><i class="fas fa-shield-alt"></i></span>
+Sus Derechos (Reglamento RGPD)
+</h2> <p class="leading-relaxed text-gray-700 mb-6">
+Usted, como titular de los datos, tiene garantizados los derechos de acceso, rectificación, supresión, limitación y oposición sobre el tratamiento de su información personal.
+</p> <div class="grid grid-cols-1 sm:grid-cols-2 gap-4"> <div class="bg-white p-6 rounded-2xl border border-gray-100 flex items-start gap-4"> <span class="text-teal-600 mt-1"><i class="fas fa-check-circle"></i></span> <div> <h4 class="font-bold text-slate-900 text-sm mb-1 m-0">Acceso y Rectificación</h4> <p class="text-xs text-gray-500 leading-relaxed m-0">Permite consultar y modificar datos incorrectos o incompletos.</p> </div> </div> <div class="bg-white p-6 rounded-2xl border border-gray-100 flex items-start gap-4"> <span class="text-teal-600 mt-1"><i class="fas fa-check-circle"></i></span> <div> <h4 class="font-bold text-slate-900 text-sm mb-1 m-0">Supresión u Oposición</h4> <p class="text-xs text-gray-500 leading-relaxed m-0">Permite eliminar sus datos de nuestras bases cuando finalice la consulta.</p> </div> </div> </div> <p class="m-0 mt-8 text-sm text-gray-600">
+Para ejercer cualquiera de estos derechos, basta con enviar una comunicación directa vía email a <a${addAttribute(`mailto:${config.contact.email}`, "href")} class="text-teal-600 font-semibold underline">${config.contact.email}</a> adjuntando copia de su DNI.
+</p> </div> </div> </div> ` })}`;
+}, "/Users/francervantesruiz/Documents/0_webs/1. Proyectos Ruvedia/clinica dental kyomu/astro/src/pages/politica-de-privacidad.astro", void 0);
+
+const $$file = "/Users/francervantesruiz/Documents/0_webs/1. Proyectos Ruvedia/clinica dental kyomu/astro/src/pages/politica-de-privacidad.astro";
+const $$url = "/politica-de-privacidad";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: $$PoliticaDePrivacidad,
+  file: $$file,
+  url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };

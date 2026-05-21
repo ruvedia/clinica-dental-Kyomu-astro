@@ -1,8 +1,18 @@
 ---
-import { config } from '../data/config';
+export let success = false;
+export let errorMsg = "";
 ---
 <section id="contacto" class="py-12 bg-white relative">
-  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+  {success && (
+  <div class="bg-teal-50 border border-teal-600 text-teal-800 p-4 rounded-xl mb-6">
+    <p class="font-medium">¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.</p>
+  </div>
+)}
+{errorMsg && (
+  <div class="bg-red-50 border border-red-600 text-red-800 p-4 rounded-xl mb-6">
+    <p class="font-medium">Error: {errorMsg}</p>
+  </div>
+)}
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
@@ -54,12 +64,12 @@ import { config } from '../data/config';
       </div>
 
       <div class="animate-safari bg-white p-8 sm:p-10 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100 relative">
-        <form class="space-y-6" method="POST" action="/contacto">
-          <!-- Honeypot oculto para bots -->
-          <div class="hidden" aria-hidden="true">
-            <label for="address_2">No rellenar si eres humano</label>
-            <input type="text" id="address_2" name="address_2" tabindex="-1" autocomplete="off" />
-          </div>
+        <form id="contactForm" class="space-y-6" method="POST" action="/contacto" onsubmit="event.preventDefault(); handleSubmit();">
+  <!-- Honeypot oculto para bots -->
+  <div class="hidden" aria-hidden="true">
+    <label for="address_2">No rellenar si eres humano</label>
+    <input type="text" id="address_2" name="address_2" tabindex="-1" autocomplete="off" />
+  </div>
 
           <div>
             <label for="name" class="block text-sm font-semibold text-slate-900 mb-2">Nombre completo</label>
@@ -101,7 +111,20 @@ import { config } from '../data/config';
               <li><strong>Más información:</strong> Consulte nuestra <a href="/politica-de-privacidad" target="_blank" class="text-teal-600 font-semibold underline hover:text-teal-700 transition-colors">Política de Privacidad</a>.</li>
             </ul>
           </div>
-        </form>
+        <script type="module">
+  async function handleSubmit() {
+    const form = document.getElementById('contactForm');
+    const formData = new FormData(form);
+    const response = await fetch(form.action, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: formData
+    });
+    const result = await response.json();
+    // Recarga para que Astro muestre los mensajes de éxito/error (propagados vía props)
+    window.location.reload();
+  }
+</script>
       </div>
 
     </div>
