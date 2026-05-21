@@ -1,5 +1,5 @@
 import { A as AstroError, bb as MissingSharp } from './sequence_BzuxnACm.mjs';
-import { b as baseService, p as parseQuality } from './generic_B_U0TpYY.mjs';
+import { b as baseService, p as parseQuality } from './generic_ajbHhtVB.mjs';
 
 let sharp;
 const qualityTable = {

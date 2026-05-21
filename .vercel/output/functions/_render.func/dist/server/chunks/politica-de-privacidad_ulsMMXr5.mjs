@@ -1,8 +1,8 @@
 import { c as createComponent } from './astro-component_C2-YdCeC.mjs';
 import 'piccolore';
 import { T as renderTemplate, B as maybeRenderHead, a4 as addAttribute } from './sequence_BzuxnACm.mjs';
-import { r as renderComponent } from './entrypoint_CeLrBwZc.mjs';
-import { $ as $$MainLayout, c as config } from './MainLayout_D-hpUEr4.mjs';
+import { r as renderComponent } from './entrypoint_uYE-PROV.mjs';
+import { $ as $$MainLayout, c as config } from './MainLayout_Cyb-1hYg.mjs';
 
 const $$PoliticaDePrivacidad = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${renderComponent($$result, "MainLayout", $$MainLayout, { "title": `Política de Privacidad | ${config.clinicName}` }, { "default": ($$result2) => renderTemplate`  ${maybeRenderHead()}<div class="bg-slate-50 border-b border-gray-100 py-16 sm:py-24"> <div class="max-w-4xl mx-auto px-4 text-center"> <span class="text-teal-600 font-semibold tracking-wider uppercase text-sm mb-4 block">Protección de Datos</span> <h1 class="text-4xl md:text-6xl font-bold text-slate-900 leading-tight">Política de Privacidad</h1> </div> </div> <div class="max-w-4xl mx-auto py-16 sm:py-24 px-4"> <div class="prose prose-lg text-gray-600 max-w-none prose-headings:text-slate-900 prose-a:text-teal-600"> <p class="text-xl leading-relaxed text-gray-500 mb-12">

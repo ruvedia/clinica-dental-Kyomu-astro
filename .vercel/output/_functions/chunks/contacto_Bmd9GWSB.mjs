@@ -1,9 +1,9 @@
 import { c as createComponent } from './astro-component_C2-YdCeC.mjs';
 import 'piccolore';
 import { T as renderTemplate, B as maybeRenderHead } from './sequence_BzuxnACm.mjs';
-import { r as renderComponent } from './entrypoint_CeLrBwZc.mjs';
-import { c as config, $ as $$MainLayout } from './MainLayout_D-hpUEr4.mjs';
-import { $ as $$Contact } from './Contact_BjS4X6Et.mjs';
+import { r as renderComponent } from './entrypoint_uYE-PROV.mjs';
+import { c as config, $ as $$MainLayout } from './MainLayout_Cyb-1hYg.mjs';
+import { $ as $$Contact } from './Contact_Dr1yBhjU.mjs';
 import nodemailer from 'nodemailer';
 
 const $$Contacto = createComponent(async ($$result, $$props, $$slots) => {
@@ -39,15 +39,12 @@ const $$Contacto = createComponent(async ($$result, $$props, $$slots) => {
           } else if (!rgpdConsent) {
             errorMsg = "Es obligatorio aceptar la cláusula de protección de datos (RGPD).";
           } else {
-            const smtpHost = undefined                          || process.env.SMTP_HOST;
-            const smtpPort = parseInt(undefined                          || process.env.SMTP_PORT || "465");
-            const smtpUser = undefined                          || process.env.SMTP_USER;
-            const smtpPass = undefined                          || process.env.SMTP_PASS;
-            const contactReceiver = undefined                                 || process.env.CONTACT_RECEIVER || smtpUser || "ruvedia@hotmail.com";
-            if (!smtpHost || !smtpUser || !smtpPass) {
-              console.error("[SMTP CONFIG ERROR] Falta configurar variables de entorno SMTP seguras en Vercel.");
-              errorMsg = "El backend del formulario está activo pero requiere configurar las credenciales SMTP en Vercel.";
-            } else {
+            const smtpHost = "smtp.office365.com";
+            const smtpPort = parseInt("587");
+            const smtpUser = "ruvedia@hotmail.com";
+            const smtpPass = "Spiderman-5";
+            const contactReceiver = "ruvedia@hotmail.com";
+            if (!smtpHost || !smtpUser || !smtpPass) ; else {
               const transporter = nodemailer.createTransport({
                 host: smtpHost,
                 port: smtpPort,

@@ -65,12 +65,22 @@ export let errorMsg = "";
       </div>
 
       <div class="animate-safari bg-white p-8 sm:p-10 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100 relative">
-        <form id="contactForm" class="space-y-6" method="POST" action="/contacto" onsubmit="event.preventDefault(); handleSubmit();">
-  <!-- Honeypot oculto para bots -->
-  <div class="hidden" aria-hidden="true">
-    <label for="address_2">No rellenar si eres humano</label>
-    <input type="text" id="address_2" name="address_2" tabindex="-1" autocomplete="off" />
-  </div>
+        <form id="contactForm" class="space-y-6" method="POST" action="/contacto">
+          <!-- Honeypot oculto para bots -->
+          <div class="hidden" aria-hidden="true">
+            <label for="address_2">No rellenar si eres humano</label>
+            <input type="text" id="address_2" name="address_2" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <!-- Mensaje Dinámico de Éxito -->
+          <div id="formSuccess" class="hidden bg-teal-50 border border-teal-600 text-teal-800 p-4 rounded-xl mb-4">
+            <p class="font-medium text-sm">¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.</p>
+          </div>
+          
+          <!-- Mensaje Dinámico de Error -->
+          <div id="formError" class="hidden bg-red-50 border border-red-600 text-red-800 p-4 rounded-xl mb-4">
+            <p id="formErrorText" class="font-medium text-sm"></p>
+          </div>
 
           <div>
             <label for="name" class="block text-sm font-semibold text-slate-900 mb-2">Nombre completo</label>
@@ -101,6 +111,7 @@ export let errorMsg = "";
           <button type="submit" class="w-full py-4 px-6 border border-transparent text-lg font-bold rounded-xl text-white bg-slate-900 hover:bg-teal-600 shadow-lg transition-all cursor-pointer">
             Enviar Mensaje
           </button>
+          
           <!-- Cláusula informativa de primer nivel (RGPD) -->
           <div class="bg-slate-50 p-4 rounded-xl border border-gray-100 text-[10px] sm:text-[11px] text-gray-500 leading-relaxed mt-4">
             <p class="m-0 mb-1 font-bold text-slate-800">Información básica sobre protección de datos (RGPD):</p>
@@ -112,20 +123,70 @@ export let errorMsg = "";
               <li><strong>Más información:</strong> Consulte nuestra <a href="/politica-de-privacidad" target="_blank" class="text-teal-600 font-semibold underline hover:text-teal-700 transition-colors">Política de Privacidad</a>.</li>
             </ul>
           </div>
+        </form>
+
         <script type="module">
-  async function handleSubmit() {
-    const form = document.getElementById('contactForm');
-    const formData = new FormData(form);
-    const response = await fetch(form.action, {
-      method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body: formData
-    });
-    const result = await response.json();
-    // Recarga para que Astro muestre los mensajes de éxito/error (propagados vía props)
-    window.location.reload();
-  }
-</script>
+          const form = document.getElementById('contactForm');
+          const successBanner = document.getElementById('formSuccess');
+          const errorBanner = document.getElementById('formError');
+          const errorText = document.getElementById('formErrorText');
+
+          if (form) {
+            form.addEventListener('submit', async (event) => {
+              event.preventDefault();
+              
+              // Ocultar banners anteriores
+              successBanner?.classList.add('hidden');
+              errorBanner?.classList.add('hidden');
+
+              // Capturar botón y texto original
+              const submitBtn = form.querySelector('button[type="submit"]');
+              const originalText = submitBtn ? submitBtn.innerText : 'Enviar Mensaje';
+              
+              if (submitBtn) {
+                submitBtn.innerText = 'Enviando...';
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+              }
+
+              try {
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                  method: 'POST',
+                  headers: { 'Accept': 'application/json' },
+                  body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                  // Mostrar éxito
+                  successBanner?.classList.remove('hidden');
+                  form.reset();
+                } else {
+                  // Mostrar error del servidor
+                  if (errorText) {
+                    errorText.innerText = result.errorMsg || 'Se ha producido un error al enviar el mensaje.';
+                  }
+                  errorBanner?.classList.remove('hidden');
+                }
+              } catch (err) {
+                console.error('Error al enviar formulario:', err);
+                if (errorText) {
+                  errorText.innerText = 'Error de conexión. Por favor, comprueba tu conexión SMTP o inténtalo de nuevo.';
+                }
+                errorBanner?.classList.remove('hidden');
+              } finally {
+                // Restaurar botón
+                if (submitBtn) {
+                  submitBtn.innerText = originalText;
+                  submitBtn.disabled = false;
+                  submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+              }
+            });
+          }
+        </script>
       </div>
 
     </div>
