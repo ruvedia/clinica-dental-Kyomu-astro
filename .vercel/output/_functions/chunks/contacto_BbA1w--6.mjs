@@ -1,9 +1,9 @@
 import { c as createComponent } from './astro-component_C2-YdCeC.mjs';
 import 'piccolore';
 import { T as renderTemplate, B as maybeRenderHead } from './sequence_BzuxnACm.mjs';
-import { r as renderComponent } from './entrypoint_tQs4wuKp.mjs';
-import { c as config, $ as $$MainLayout } from './MainLayout_BE9lXY21.mjs';
-import { $ as $$Contact } from './Contact_CV5vNw2i.mjs';
+import { r as renderComponent } from './entrypoint_CeLrBwZc.mjs';
+import { c as config, $ as $$MainLayout } from './MainLayout_D-hpUEr4.mjs';
+import { $ as $$Contact } from './Contact_BjS4X6Et.mjs';
 import nodemailer from 'nodemailer';
 
 const $$Contacto = createComponent(async ($$result, $$props, $$slots) => {
