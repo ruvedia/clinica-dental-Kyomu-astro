@@ -1,9 +1,9 @@
 import { c as createComponent } from './astro-component_C2-YdCeC.mjs';
 import 'piccolore';
 import { T as renderTemplate, B as maybeRenderHead } from './sequence_BzuxnACm.mjs';
-import { r as renderComponent } from './entrypoint_C6RGDqt5.mjs';
-import { c as config, $ as $$MainLayout } from './MainLayout_D3C-pk1D.mjs';
-import { $ as $$Contact } from './Contact_BCbDryLK.mjs';
+import { r as renderComponent } from './entrypoint_qzghbTAF.mjs';
+import { c as config, $ as $$MainLayout } from './MainLayout_CYSXI6LL.mjs';
+import { $ as $$Contact } from './Contact_CMwq2TCn.mjs';
 import nodemailer from 'nodemailer';
 import fs from 'node:fs';
 import nodePath from 'node:path';
@@ -59,15 +59,12 @@ const $$Contacto = createComponent(async ($$result, $$props, $$slots) => {
           } else if (!rgpdConsent) {
             errorMsg = "Es obligatorio aceptar la cláusula de protección de datos (RGPD).";
           } else {
-            const smtpHost = "smtp.office365.com";
-            const smtpPort = parseInt("587");
-            const smtpUser = "ruvedia@hotmail.com";
-            const smtpPass = process.env.SMTP_PASS;
-            const contactReceiver = "ruvedia@hotmail.com";
-            if (!smtpHost || !smtpUser || !smtpPass) {
-              console.error("[SMTP CONFIG ERROR] Falta configurar variables de entorno SMTP seguras en Vercel.");
-              errorMsg = "El backend del formulario está activo pero requiere configurar las credenciales SMTP en Vercel.";
-            } else {
+            const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
+            const smtpPort = parseInt(process.env.SMTP_PORT || "465");
+            const smtpUser = process.env.SMTP_USER || "rucer282@gmail.com";
+            const smtpPass = process.env.SMTP_PASS || "oyud cprk soug nwov";
+            const contactReceiver = process.env.CONTACT_RECEIVER || "ruvedia@hotmail.com";
+            if (!smtpHost || !smtpUser || !smtpPass) ; else {
               const transporter = nodemailer.createTransport({
                 host: smtpHost,
                 port: smtpPort,

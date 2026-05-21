@@ -67,11 +67,11 @@ if (Astro.request.method === "POST") {
           errorMsg = "Es obligatorio aceptar la cláusula de protección de datos (RGPD).";
         } else {
           // 5. Configuración de Envío de Email mediante SMTP Seguro (Variables de Entorno)
-          const smtpHost = import.meta.env.SMTP_HOST || process.env.SMTP_HOST;
-          const smtpPort = parseInt(import.meta.env.SMTP_PORT || process.env.SMTP_PORT || "465");
-          const smtpUser = import.meta.env.SMTP_USER || process.env.SMTP_USER;
-          const smtpPass = import.meta.env.SMTP_PASS || process.env.SMTP_PASS;
-          const contactReceiver = import.meta.env.CONTACT_RECEIVER || process.env.CONTACT_RECEIVER || smtpUser || "ruvedia@hotmail.com";
+          const smtpHost = process.env.SMTP_HOST || import.meta.env.SMTP_HOST;
+          const smtpPort = parseInt(process.env.SMTP_PORT || import.meta.env.SMTP_PORT || "465");
+          const smtpUser = process.env.SMTP_USER || import.meta.env.SMTP_USER;
+          const smtpPass = process.env.SMTP_PASS || import.meta.env.SMTP_PASS;
+          const contactReceiver = process.env.CONTACT_RECEIVER || import.meta.env.CONTACT_RECEIVER || smtpUser || "ruvedia@hotmail.com";
 
           if (!smtpHost || !smtpUser || !smtpPass) {
             console.error("[SMTP CONFIG ERROR] Falta configurar variables de entorno SMTP seguras en Vercel.");
