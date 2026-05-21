@@ -2,29 +2,34 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import Contact from '../components/Contact.astro';
 import { config } from '../data/config';
-import nodemailer from 'nodemailer';
 
-import fs from 'node:fs';
-import path from 'node:path';
+// Detectar entorno Cloudflare Workers
+const isCloudflareWorker = typeof process === 'undefined' || !process.release || process.release.name !== 'node';
 
-// Local .env loader fallback for development environment
-try {
-  const envPath = path.resolve(process.cwd(), '.env');
-  if (fs.existsSync(envPath)) {
-    const envContent = fs.readFileSync(envPath, 'utf-8');
-    envContent.split(/\r?\n/).forEach(line => {
-      const trimmed = line.trim();
-      if (trimmed && !trimmed.startsWith('#')) {
-        const [key, ...valueParts] = trimmed.split('=');
-        const value = valueParts.join('=').trim();
-        if (key && value) {
-          process.env[key.trim()] = value;
+// Local .env loader fallback for Node.js development environment
+if (!isCloudflareWorker) {
+  try {
+    const fsPkg = 'node:fs';
+    const pathPkg = 'node:path';
+    const fs = await import(fsPkg);
+    const path = await import(pathPkg);
+    const envPath = path.resolve(process.cwd(), '.env');
+    if (fs.existsSync(envPath)) {
+      const envContent = fs.readFileSync(envPath, 'utf-8');
+      envContent.split(/\r?\n/).forEach(line => {
+        const trimmed = line.trim();
+        if (trimmed && !trimmed.startsWith('#')) {
+          const [key, ...valueParts] = trimmed.split('=');
+          const value = valueParts.join('=').trim();
+          if (key && value) {
+            process.env[key.trim()] = value.replace(/^['"]|['"]$/g, '');
+          }
         }
-      }
-    });
+      });
+    }
+  } catch (e) {
+    console.error('Error loading local .env file:', e);
   }
-} catch (e) {
-  console.error('Error loading local .env file:', e);
 }
 
 let success = false;
@@ -204,6 +209,9 @@ if (Astro.request.method === "POST") {
               console.error("[SMTP CONFIG ERROR] Falta configurar variables de entorno SMTP seguras en local.");
               errorMsg = "El backend del formulario está activo pero requiere configurar las credenciales SMTP en tu .env.";
             } else {
+              const nodemailerPkg = 'nodemailer';
+              const nodemailer = (await import(nodemailerPkg)).default;
+              
               const transporter = nodemailer.createTransport({
                 host: smtpHost,
                 port: smtpPort,
